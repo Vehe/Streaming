@@ -1,0 +1,405 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+* {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: 'Montserrat', sans-serif;
+}
+
+/* Estilos general enlaces */
+a {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+a:focus {
+	outline: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+  color: #990929;
+}
+
+/* Estilos general para los input de todos los navegadores */
+input {
+	outline: none;
+	border: none;
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; }
+input:focus::-moz-placeholder { color:transparent; }
+input:focus:-ms-input-placeholder { color:transparent; }
+
+input::-webkit-input-placeholder { color: #999999;}
+input:-moz-placeholder { color: #999999;}
+input::-moz-placeholder { color: #999999;}
+input:-ms-input-placeholder { color: #999999;}
+
+/* Estilos general de los botones */
+button {
+	outline: none !important;
+	border: none;
+	background: transparent;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+/* Colores de los iconos de rrss y textos*/
+.bg1 {background: #3b5998;}
+.bg2 {background: #1da1f2;}
+
+.txt2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #999999;
+}
+
+
+/* Eslilos del login en general */
+.limiter {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container-login100 {
+  width: 100%;  
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: #f2f2f2;
+}
+
+.logo-page {
+  width: 100%;
+}
+
+.wrap-login100 {
+  width: 100%;
+  background: black;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex-direction: row-reverse;
+
+}
+
+/* Imagen del fondo a la izquierda con carteles de peliculas */
+.login100-more {
+  width: calc(100% - 25%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+}
+
+.login100-more::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.1);
+}
+
+/* Estilos del formulario general */
+
+.login100-form {
+  width: 25%;
+  min-height: 100vh;
+  display: block;
+  background-color: rgb(19, 19, 19);
+  padding: 140px 55px 55px 55px;
+  box-shadow: 1px 0px 120px -10px #fff;
+  z-index: 10;
+  border-radius: 10px;
+}
+
+.login100-form-title {
+  width: 100%;
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  color: #333333;
+  line-height: 1.2;
+  text-align: center;
+}
+
+
+
+/* Inputs de usuario y contraseña form */
+
+.wrap-input100 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  width: 100%;
+  height: 80px;
+  position: relative;
+  border: 2px solid #e6e6e6;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.label-input100 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  color: #999999;
+  line-height: 1.2;
+
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  width: 100%;
+  padding-left: 24px;
+  left: 0;
+  top: 30px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.input100 {
+  display: block;
+  width: 100%;
+  background: transparent;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  color: #555555;
+  line-height: 1.2;
+  padding: 0 26px;
+}
+
+input.input100 {
+  height: 100%;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.focus-input100 {
+  position: absolute;
+  display: block;
+  width: calc(100% + 5px);
+  height: calc(100% + 5px);
+  top: -2px;
+  left: -2px;
+  pointer-events: none;
+  border: 3px solid #990929;
+  border-radius: 10px;
+
+  visibility: hidden;
+  opacity: 0;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+
+  -webkit-transform: scaleX(1.1) scaleY(1.3);
+  -moz-transform: scaleX(1.1) scaleY(1.3);
+  -ms-transform: scaleX(1.1) scaleY(1.3);
+  -o-transform: scaleX(1.1) scaleY(1.3);
+  transform: scaleX(1.1) scaleY(1.3);
+}
+
+.input100:focus + .focus-input100 {
+  visibility: visible;
+  opacity: 1;
+
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+
+/* Inputs del usuario */
+.input100:focus {
+  height: 48px;
+}
+
+.input100:focus + .focus-input100 + .label-input100 {
+  top: 14px;
+  font-size: 13px;
+}
+
+.has-val {
+  height: 48px !important;
+}
+
+.has-val + .focus-input100 + .label-input100 {
+  top: 14px;
+  font-size: 13px;
+}
+
+/* Boton del login */
+.container-login100-form-btn {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.login100-form-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  background: #990929;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+  background: #333333;
+}
+
+/* Input a validar */
+
+.validate-input {
+  position: relative;
+}
+
+/* Iconos sociales */
+.login100-form-social-item {
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.login100-form-social-item:hover {
+  background: #333333;
+  color: #fff;
+}
+
+
+/* Creacion mensaje error */
+.error-msg {
+  height: 60px;
+  width: 23%;
+  background: #FFA92C;
+  position: absolute;
+  right: 10px;
+  top: 25px;;
+  z-index: 200;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 90% 10%;
+  justify-content: center;
+  align-items: center;
+}
+
+.msg-content {
+  padding-left: 20px;
+}
+
+.closebtn {
+  cursor: pointer;
+  color: black;
+  font-size: 3em;
+}
+
+/* Hacer la web de manera responsive */
+@media (max-width: 1200px) {
+  .login100-more {
+    width: calc(100% - 40%);
+  }
+
+  .login100-form {
+    width: 40%;
+  }
+
+  .error-msg {
+    width: 38%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .login100-more {
+    width: calc(100% - 50%);
+  }
+
+  .login100-form {
+    width: 50%;
+  }
+
+  .error-msg {
+    width: 47%;
+  }
+}
+
+@media (max-width: 690px) {
+  .login100-more {
+    width: 0;
+  }
+
+  .login100-form {
+    width: 100%;
+  }
+
+  .error-msg {
+    width: 96%;
+  }
+}

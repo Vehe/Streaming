@@ -4,7 +4,6 @@
     include_once( '../../seguridad/newnetflix/Session.class.php' );
     include_once( '../../seguridad/newnetflix/Db.class.php' );
 
-    
     /**
      * Establecer configuración para smarty.
      *
@@ -22,11 +21,11 @@
         $smarty->assign('username', $_SESSION['nombre']);
 
         $db = new Db();
-        $posters = $db->getUserPosters($_SESSION['dni']);
+        $user_videos = $db->getUserVideos($_SESSION['dni']);
+        $db->close();
 
-        $smarty->assign('array_carteles', $posters);
+        $smarty->assign('videos_array', $user_videos);
         $smarty->display( 'panel.tpl' );
-
 
     } else {
 

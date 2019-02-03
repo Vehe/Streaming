@@ -4,6 +4,7 @@
     include_once( '../../seguridad/newnetflix/Session.class.php' );
     include_once( '../../seguridad/newnetflix/Db.class.php' );
     include_once( '../../seguridad/newnetflix/Cipher.class.php' );
+    include_once( '../../seguridad/newnetflix/VideoStream.class.php' );
 
     /**
      * Establecer configuración para smarty.
@@ -13,23 +14,6 @@
     $smarty->cache_dir = "../../seguridad/rendernewnetflix/cache/";
     $smarty->template_dir = "../../seguridad/rendernewnetflix/templates/";
     $smarty->compile_dir = "../../seguridad/rendernewnetflix/templates_c/";
-
-    /**
-     * Creamos un id random de 25 chars el cual guardaremos en la sesion, ademas de ello,
-     * lo guardaremos en un json junto al codigo de la pelicula, el cual lo usaremos para comprobar en el 
-     * reporductor, que el id del json y de la sesion coinciden, encriptamos el json y lo enviamos a reproductor,
-     * que es el encargado de que se reproduzca el video.
-     */
-    function createVideoLink($codigo) {
-        $id_random = bin2hex(openssl_random_pseudo_bytes(25));
-        $data = [
-            'cod'=>$codigo,
-            'id_random'=>$id_random
-        ];
-        $_SESSION['id_random'] = $id_random;
-        $link = Cipher::encrypt(json_encode($data));
-        return "reproductor.php?v=" . urlencode($link);
-    }
 
     Session::init();
 
@@ -49,12 +33,23 @@
         exit;
     }
 
+    $enc_link = strip_tags(trim($_GET['v']));
+    $data = json_decode(Cipher::decrypt($enc_link));
 
-    $codigo_peli = strip_tags(trim($_GET['v']));
+    /**
+     * Comprueba que el random que se le ha pasado por los datos es el mismo que 
+     * se generó y guardo en la variable de sesion al pulsar en la pelicula a visualizar,
+     * en caso de no ser iguales, te devuelve al panel. (Un extra de seguridad, pero si te roban,
+     * la id de sesion estas jodido igual.)
+     */
+    if($_SESSION['id_random'] != $data->id_random) {
+        header("Location: panel.php");
+        exit;
+    }
 
     $db = new Db();
-    $auth = $db->isUserAuthorized($codigo_peli, $_SESSION['dni']);
-    
+    $auth = $db->isUserAuthorized($data->cod, $_SESSION['dni']);
+
     /**
      * Si el usuario ha entrado a ver un video para el que no esta autorizado, vuelve al panel.
      */
@@ -63,12 +58,12 @@
         exit;
     }
 
-    $video_info = $db->getVideoData($codigo_peli);
-    $link = createVideoLink($codigo_peli);
+    $video_info = $db->getVideoData($data->cod);
+    $ruta_video = '../../seguridad/newnetflix/videos/' . $video_info['video'];
+    $db->markAsView($_SESSION['dni'], $data->cod);
     $db->close();
-
-    $smarty->assign('video_data', $video_info);
-    $smarty->assign('link', $link);
-    $smarty->display('reproductor.tpl');
+    
+    $stream = new VideoStream($ruta_video);
+    $stream->start();
     
 ?>

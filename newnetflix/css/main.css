@@ -276,6 +276,10 @@ main .container {
   grid-gap: 20px;
 }
 
+main .container a {
+  height: 350px !important;
+}
+
 main .container img {
   cursor: pointer;
   width: 100%;

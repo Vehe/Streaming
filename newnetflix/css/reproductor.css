@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body main {
+  background-image: url("../images/bg3.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100% - 20%);
+  width: calc(100% - 20%);
+  padding: 5% 10% 5% 10%;
+}
+
+body main .video-container {
+  height: 100%;
+  width: 100%;
+  background: black;
+}
+
+body main .video-container video {
+  height: 100%;
+  width: 100%;
+}
+
+body main button {
+  background-color: #B42C31;
+  cursor: pointer;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+body main button i {
+  padding: 5px;
+  font-size: 3em;
+  color: whitesmoke;
+}
+
+body section {
+  background-color: whitesmoke;
+  height: auto;
+  width: calc(100% - 10%);
+  padding: 5vh 5% 5vh 5%;
+}
+
+body section .description-container {
+  height: 300px;
+  width: calc(100% - 30px);
+  background-color: whitesmoke;
+  border-width: 5px;
+  border-style: dashed;
+  color: gray;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 25% 75%;
+      grid-template-columns: 25% 75%;
+  padding: 10px;
+}
+
+body section .description-container img {
+  height: 300px;
+  width: 100%;
+}
+
+body section .description-container .info {
+  height: 300px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 75px 150px 75px;
+      grid-template-rows: 75px 150px 75px;
+}
+
+body section .description-container .info .titulo {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 3em;
+  margin-left: 20px;
+}
+
+body section .description-container .info .sinopsis {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20px;
+  font-size: 17px;
+}
+
+body section .description-container .info .download {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body section .description-container .info .download i {
+  cursor: pointer;
+  font-size: 2em;
+  color: black;
+  margin-left: 20px;
+}
+
+@media (max-width: 1040px) {
+  body section .description-container .info .titulo {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 800px) {
+  body main button i {
+    padding: 5px;
+    font-size: 2em;
+    color: whitesmoke;
+  }
+  body section .description-container .info {
+    -ms-grid-rows: 50px 175px 75px;
+        grid-template-rows: 50px 175px 75px;
+  }
+}
+
+@media (max-width: 712px) {
+  body section .description-container {
+    -ms-grid-columns: 0% 100%;
+        grid-template-columns: 0% 100%;
+  }
+  body section .description-container .info .titulo {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 650px) {
+  body main button i {
+    padding: 2px;
+    font-size: 1.6em;
+    color: whitesmoke;
+  }
+}
+
+@media (max-width: 550px) {
+  body section .description-container .info .sinopsis {
+    font-size: 14px;
+  }
+  body section .description-container .info .download i {
+    font-size: 1.4em;
+  }
+}
+/*# sourceMappingURL=main.css.map */

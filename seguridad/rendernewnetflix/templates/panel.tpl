@@ -60,8 +60,17 @@
 
         <section class="container">
 
-            {foreach from=$array_carteles item=cartel}
-                <a href="hola.php"><img src="carteles/{$cartel}" alt=""></a>
+            {foreach $videos_array as $video}
+                {if $video.vista}
+                    <div class="visualized-container">
+                        <a href="visualizar.php?v={$video.codigo}"><img src="carteles/{$video.cartel}" alt="{$video.titulo}"></a>
+                        <div class="top-left-visualized">
+                            <i class="far fa-eye"></i>
+                        </div>
+                    </div>
+                {else}
+                    <a href="visualizar.php?v={$video.codigo}"><img src="carteles/{$video.cartel}" alt="{$video.titulo}"></a>
+                {/if}
             {/foreach}
 
         </section>

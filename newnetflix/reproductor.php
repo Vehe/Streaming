@@ -60,10 +60,11 @@
 
     $video_info = $db->getVideoData($data->cod);
     $ruta_video = '../../seguridad/newnetflix/videos/' . $video_info['video'];
+
     $db->markAsView($_SESSION['dni'], $data->cod);
     $db->close();
     
     $stream = new VideoStream($ruta_video);
     $stream->start();
-    
+
 ?>

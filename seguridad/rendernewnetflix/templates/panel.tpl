@@ -66,6 +66,7 @@
                         <a href="visualizar.php?v={$video.codigo}"><img src="carteles/{$video.cartel}" alt="{$video.titulo}"></a>
                         <div class="top-left-visualized">
                             <i class="far fa-eye"></i>
+                            <span>{$video.vista}</span>
                         </div>
                     </div>
                 {else}             

@@ -56,7 +56,7 @@
 				$query2->execute();
 				$query2->fetch();
 				$query2->close();
-				$vid['vista'] = ($count != 0) ? true : false;
+				$vid['vista'] = $count;
 				array_push($video_info, $vid);
 
 			}

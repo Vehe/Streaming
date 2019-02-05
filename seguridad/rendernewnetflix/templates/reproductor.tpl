@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="css/reproductor.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.redirect.js"></script>
+    <script type="text/javascript" src="js/rep.js"></script>
     <title>Reproductor</title>
 </head>
 <body>
@@ -28,7 +31,7 @@
                 <span class="sinopsis">{$video_data.sinopsis}</span>
                 {if $video_data.descargable == 'S'}
                     <div class="download">
-                        <i class="fas fa-download"></i>
+                        <i class="fas fa-download" id="{$video_data.codigo}"></i>
                     </div>
                 {/if}
             </div>

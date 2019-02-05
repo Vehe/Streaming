@@ -68,7 +68,7 @@
                             <i class="far fa-eye"></i>
                         </div>
                     </div>
-                {else}
+                {else}             
                     <a href="visualizar.php?v={$video.codigo}"><img src="carteles/{$video.cartel}" alt="{$video.titulo}"></a>
                 {/if}
             {/foreach}

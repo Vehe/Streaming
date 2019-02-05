@@ -24,15 +24,15 @@
 		 *	@param $usr - Nombre de usuario del que descargar la password.
 		 */
 		public function getPassword($usr) {
-	        $query = $this->CON->prepare( 'select clave,nombre from usuarios where dni=?' );
-	        $query->bind_param('s', $usr);
-	        $query->execute();
-	        $res = $query->get_result();
-	        $end = $res->fetch_assoc();
-	        $query->fetch();
-	        $query->close();
+			$query = $this->CON->prepare( 'select clave,nombre from usuarios where dni=?' );
+			$query->bind_param('s', $usr);
+			$query->execute();
+			$res = $query->get_result();
+			$end = $res->fetch_assoc();
+			$query->fetch();
+			$query->close();
 
-	        return $end;
+			return $end;
 		}
 
 		/**
@@ -44,25 +44,25 @@
 		 */
 		public function getUserVideos($dni) {
 			$video_info = array();
-			$query = $this->CON->prepare( 'select * from videos where codigo_perfil in (select codigo_perfil from perfil_usuario where dni=?)' );
-	        $query->bind_param('s', $dni);
-	        $query->execute();
-	        $res = $query->get_result();
-		    while ($vid = $res->fetch_assoc()) {
+			$query = $this->CON->prepare( 'select * from videos where codigo_perfil in (select codigo_perfil from perfil_usuario where dni=?) order by titulo' );
+			$query->bind_param('s', $dni);
+			$query->execute();
+			$res = $query->get_result();
+			while ($vid = $res->fetch_assoc()) {
 
 				$query2 = $this->CON->prepare( 'select count(*) from visionado where dni=? and codigo_video=?' );
-		        $query2->bind_param('ss', $dni, $vid['codigo']);
-		        $query2->bind_result($count);
-		        $query2->execute();
-		        $query2->fetch();
-		        $query2->close();
-		        $vid['vista'] = ($count != 0) ? true : false;
-		    	array_push($video_info, $vid);
+				$query2->bind_param('ss', $dni, $vid['codigo']);
+				$query2->bind_result($count);
+				$query2->execute();
+				$query2->fetch();
+				$query2->close();
+				$vid['vista'] = ($count != 0) ? true : false;
+				array_push($video_info, $vid);
 
-		    }
-	        $query->close();
+			}
+			$query->close();
 
-	        return $video_info;
+			return $video_info;
 		}
 
 		/**
@@ -73,14 +73,30 @@
 		 *	@param $dni - Dni del usuario a comprobar
 		 */
 		public function isUserAuthorized($cod, $dni) {
-	        $query = $this->CON->prepare( 'select count(*) from videos where codigo=? and codigo_perfil in (select codigo_perfil from perfil_usuario where dni=?)' );
-	        $query->bind_param('ss', $cod, $dni);
-	        $query->bind_result($count);
-	        $query->execute();
-	        $query->fetch();
-	        $query->close();
+			$query = $this->CON->prepare( 'select count(*) from videos where codigo=? and codigo_perfil in (select codigo_perfil from perfil_usuario where dni=?)' );
+			$query->bind_param('ss', $cod, $dni);
+			$query->bind_result($count);
+			$query->execute();
+			$query->fetch();
+			$query->close();
 
-	        return ($count == 1) ? true : false;
+			return ($count == 1) ? true : false;
+	    }
+
+		/**
+		 *	Devuelve el nombre con el que se guarda la pelicula.
+		 *	
+		 *	@param $cod - Codigo de la pelicula a comprobar
+		 */
+	    public function getVideoName($cod) {
+			$query = $this->CON->prepare( 'select video from videos where codigo=?' );
+			$query->bind_param('s', $cod);
+			$query->bind_result($enlace);
+			$query->execute();
+			$query->fetch();
+			$query->close();
+
+			return $enlace;
 	    }
 
 		/**
@@ -88,24 +104,24 @@
 		 *	
 		 *	@param $codigo - Codigo de la pelicula a comprobar.
 		 */
-	    public function getVideoData($codigo) {
-	        $query = $this->CON->prepare( 'select * from videos where codigo=?' );
-	        $query->bind_param('s', $codigo);
-	        $query->execute();
-	        $res = $query->get_result();
-	        $video = $res->fetch_assoc();
+		public function getVideoData($codigo) {
+			$query = $this->CON->prepare( 'select * from videos where codigo=?' );
+			$query->bind_param('s', $codigo);
+			$query->execute();
+			$res = $query->get_result();
+			$video = $res->fetch_assoc();
 			$query->close();
 
-	        return $video;
-	    }
+			return $video;
+		}
 
-	    /**
-	     *	Inserta en la tabla de visionado el momento en el que el usuario a visto
-	     *	una pelicula.
-	     *
-	     *	@param $dni - Dni del usuario.
-	     *	@param $codigo - Codigo de la pelicula vista.
-	     */
+		/**
+		 *	Inserta en la tabla de visionado el momento en el que el usuario a visto
+		 *	una pelicula.
+		 *
+		 *	@param $dni - Dni del usuario.
+		 *	@param $codigo - Codigo de la pelicula vista.
+		 */
 	    public function markAsView($dni, $codigo) {
 	    	$query = $this->CON->prepare( 'insert into visionado (dni,codigo_video,fecha) values (?,?,CURRENT_TIMESTAMP)' );
 			$query->bind_param('ss', $dni, $codigo);
@@ -113,17 +129,6 @@
 			$query->close();
 	    }
 
-		/**
-	     *	Comprueba si el usuario ya ha visto la pelicula.
-	     *
-	     *	@param $dni - Dni del usuario.
-	     *	@param $codigo - Codigo de la pelicula vista.
-	     */
-	    public function checkView($dni, $codigo) {
-	    	
-	    }
-
-		
 		/**
 		 *	Se cierra la conexion actual.
 		 *

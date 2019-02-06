@@ -1,19 +1,9 @@
 <?php
 
-    include_once( '../../Smarty/libs/Smarty.class.php' );
     include_once( '../../seguridad/newnetflix/Session.class.php' );
     include_once( '../../seguridad/newnetflix/Db.class.php' );
     include_once( '../../seguridad/newnetflix/Cipher.class.php' );
     include_once( '../../seguridad/newnetflix/VideoStream.class.php' );
-
-    /**
-     * Establecer configuración para smarty.
-     */
-    $smarty = new Smarty();
-    $smarty->config_dir = "../../seguridad/rendernewnetflix/configs/";
-    $smarty->cache_dir = "../../seguridad/rendernewnetflix/cache/";
-    $smarty->template_dir = "../../seguridad/rendernewnetflix/templates/";
-    $smarty->compile_dir = "../../seguridad/rendernewnetflix/templates_c/";
 
     Session::init();
 

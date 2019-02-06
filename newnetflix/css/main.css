@@ -356,6 +356,11 @@ main .container .visualized-container .top-left-visualized span {
   color: white;
 }
 
+select {
+  width: 100%;
+  height: 100%;
+}
+
 /**
  * Creacion de el main de manera responsive.
  */

@@ -45,6 +45,17 @@
                         <span class="slider round"></span>
                     </label>
                 </li>
+                <li>
+                    <select name="tematicas" id="select-tematica">
+                        
+                    </select>
+                </li>
+                <li>
+                    <button id="aplicar-tematica">Aplicar Tematica</button>
+                </li>
+                <li>
+                    <button id="resetear-tematica">Resetear</button>
+                </li>
             </ul>
         </section>
 

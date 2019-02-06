@@ -57,7 +57,9 @@
 				$query2->fetch();
 				$query2->close();
 				$vid['vista'] = $count;
+				$vid['categorias'] = $this->getCategory($vid['codigo']);
 				array_push($video_info, $vid);
+
 
 			}
 			$query->close();
@@ -81,6 +83,28 @@
 			$query->close();
 
 			return ($count == 1) ? true : false;
+	    }
+
+	    /**
+	     * Devuelve las categorías que tiene una película en concreto.
+		 *
+		 * @param $codigo - Código de la película.
+	     */
+	    public function getCategory($codigo) {
+	    	$category = array();
+	    	$query = $this->CON->prepare( 'select descripcion from tematica where codigo in (select codigo_tematica from asociado where codigo_video=?)' );
+			$query->bind_param('s', $codigo);
+			$query->execute();
+			$query->bind_result($cat);
+			$query->execute();
+
+			while($query->fetch()) {
+				array_push($category, $cat);
+			}
+
+			$query->close();
+
+			return $category;
 	    }
 
 		/**

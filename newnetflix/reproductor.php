@@ -39,8 +39,8 @@
     /**
      * Comprueba que el random que se le ha pasado por los datos es el mismo que 
      * se generó y guardo en la variable de sesion al pulsar en la pelicula a visualizar,
-     * en caso de no ser iguales, te devuelve al panel. (Un extra de seguridad, pero si te roban,
-     * la id de sesion estas jodido igual.)
+     * en caso de no ser iguales, te devuelve al panel. (Esto era para crear el token de 1 solo uso,
+     * como ya no se hace así, no se usa para nada, sino como extra de seguridad.)
      */
     if($_SESSION['id_random'] != $data->id_random) {
         header("Location: panel.php");

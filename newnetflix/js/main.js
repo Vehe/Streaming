@@ -1,3 +1,6 @@
+let isChecked = false;
+let category = document.getElementsByClassName('top-right-category');
+
 window.addEventListener('load', function() {
 
     const filter_bar = document.querySelector( '.filter' );
@@ -10,9 +13,19 @@ window.addEventListener('load', function() {
         filter_bar.style.display = "block";
     }
 
-    document.getElementById( 'aplicar-filtros' ).onclick = function () {
-        console.log(document.getElementById( 'orden-tematico-id' ).checked);
-        console.log(document.getElementById( 'orden-alfabetico-id' ).checked);
-    }
+    document.querySelector( '#orden-tematico-id' ).onclick = function () {
 
+        isChecked = !isChecked;
+
+        if(isChecked) {
+            for(const a of category){
+                a.style.display = "grid";
+            }
+        } else {
+            for(const a of category){
+                a.style.display = "none";
+            }
+        }
+        
+    }
 });

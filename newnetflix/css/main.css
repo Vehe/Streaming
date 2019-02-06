@@ -321,6 +321,31 @@ main .container .visualized-container .top-left-visualized {
   opacity: .8;
 }
 
+main .container .visualized-container .top-right-category {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: auto;
+  height: auto;
+  background: #7B192A;
+  color: white;
+  border-radius: 5px;
+  display: -ms-grid;
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  opacity: .95;
+}
+
+main .container .visualized-container .top-right-category span {
+  text-align: center;
+  padding: 5px;
+}
+
 main .container .visualized-container .top-left-visualized i {
   text-align: center;
   font-size: 2em;

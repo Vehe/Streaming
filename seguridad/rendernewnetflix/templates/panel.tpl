@@ -45,33 +45,28 @@
                         <span class="slider round"></span>
                     </label>
                 </li>
-                <li class="alfabetico">
-                    <span>Ordenar de manera alfabetica</span>
-                    <label class="switch">
-                        <input type="checkbox" id="orden-alfabetico-id">
-                        <span class="slider round"></span>
-                    </label>
-                </li>
-                <li>
-                    <button id='aplicar-filtros'>Aplicar Filtros</button>
-                </li>
             </ul>
         </section>
 
         <section class="container">
 
             {foreach $videos_array as $video}
+                <div class="visualized-container">
+                <a href="visualizar.php?v={$video.codigo}"><img src="carteles/{$video.cartel}" alt="{$video.titulo}"></a>
+                <div class="top-right-category">
+                    {foreach from=$video.categorias item=cat}
+                        <span>{$cat}</span> 
+                    {/foreach}
+                </div>
+
                 {if $video.vista}
-                    <div class="visualized-container">
-                        <a href="visualizar.php?v={$video.codigo}"><img src="carteles/{$video.cartel}" alt="{$video.titulo}"></a>
-                        <div class="top-left-visualized">
-                            <i class="far fa-eye"></i>
-                            <span>{$video.vista}</span>
-                        </div>
+                    <div class="top-left-visualized">
+                        <i class="far fa-eye"></i>
+                        <span>{$video.vista}</span>
                     </div>
-                {else}             
-                    <a href="visualizar.php?v={$video.codigo}"><img src="carteles/{$video.cartel}" alt="{$video.titulo}"></a>
                 {/if}
+                
+                </div>   
             {/foreach}
 
         </section>
